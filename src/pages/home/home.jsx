@@ -22,37 +22,18 @@ function ControlledCarousel() {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} className="w-100 xxl">
-      <Carousel.Item>
-        <img
-          className="d-block w-100 img-fluid"
-          src={imgCarrusel1}
-          alt="img1"
-        />
+    <Carousel activeIndex={index} onSelect={handleSelect} fixed="top" className="carouselstyle">
+      <Carousel.Item fixed="top">
+        <img className="d-block w-100 img-fluid" src={imgCarrusel1} alt="img1" />
       </Carousel.Item>
-
       <Carousel.Item>
-        <img
-          className="d-block w-100 img-fluid"
-          src={imgCarrusel2}
-          alt="img2"
-        />
+        <img className="d-block w-100 img-fluid" src={imgCarrusel2} alt="img2" />
       </Carousel.Item>
-
       <Carousel.Item>
-        <img
-          className="d-block w-100 img-fluid"
-          src={imgCarrusel3}
-          alt="img3"
-        />
+        <img className="d-block w-100 img-fluid" src={imgCarrusel3} alt="img3" />
       </Carousel.Item>
-
-      <Carousel.Item>
-        <img
-          className="d-block w-100 img-fluid"
-          src={imgCarrusel4}
-          alt="img4"
-        />
+      <Carousel.Item>   
+        <img className="d-block w-100 img-fluid" src={imgCarrusel4} alt="img4"/>
       </Carousel.Item>
     </Carousel>
   );
@@ -167,6 +148,7 @@ function Anuncio() {
 const Home = () => {
     return (
         <>
+            
             <Navb />
             <ControlledCarousel />
             <GroupProducts />
