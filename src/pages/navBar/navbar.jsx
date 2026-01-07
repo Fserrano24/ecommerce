@@ -10,8 +10,8 @@ import logo from "../../img/logoNetBuy.png";
 function Navb() {
     return (
         <>
-        <Navbar expand="xxl" fixed='top' className="bg-body-tertiary mb-3">
-            <Container fluid>
+        <Navbar expand="xxl" fixed='top' className="bg-body-tertiary">
+            <Container fluid className="px-0">
                 <Navbar.Brand href="home"> <img className="logo" src={logo} alt="NetBuy"/></Navbar.Brand>
                 <Form className="d-none d-lg-flex mx-5 w-50 p-2 align-items-center">
                             <Form.Control type="search" placeholder="Qué estás buscando?" className="me-2" />
