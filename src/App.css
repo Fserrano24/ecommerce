@@ -1,5 +1,4 @@
 #root {
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -30,6 +29,7 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+
 
 .read-the-docs {
   color: #888;
