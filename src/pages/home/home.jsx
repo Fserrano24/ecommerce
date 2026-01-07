@@ -139,6 +139,7 @@ const Home = () => {
             <ControlledCarousel />
             <CardProductos />
             <GridProducts />
+            <CardProductos />
             <ImgOverlay/>
 
         </>
