@@ -21,7 +21,7 @@ const Navb = () => {
             placeholder="¿Qué estás buscando?"
             className="me-2 d-lg-flex"
           />
-          <Button variant="outline-danger" disabled>
+          <Button variant="outline-danger" >
             Buscar
           </Button>
         </Form>
