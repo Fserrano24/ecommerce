@@ -73,29 +73,17 @@ const LandingCategorias = () => {
     );
 };
 
-function GridProducts({ searchTerm }) {
-    const productosFiltrados = productCargados.filter((product) => {
-        const busqueda = (searchTerm || "").toLowerCase();
-        const coincideNombre = product.name?.toLowerCase().includes(busqueda);
-        const coincideCategoria = product.categoria?.toLowerCase().includes(busqueda);
-
-        return coincideNombre || coincideCategoria;
-    });
-
+function GridProducts() {
     return (
-        <CardGroup className="m-4">
-            <Row xs={1} md={4} className="g-4 w-100">
-                {productosFiltrados.length > 0 ? (
-                    productosFiltrados.map((product) => (
-                        <Col key={product.id}>
-                            <Card className="w-100 h-100 shadow-lg bg-body rounded cardPagPrincipal">
-                                <Card.Img 
-                                    variant="top" 
-                                    className="h-100 d-flex justify-content-center align-items-center" 
-                                    src={product.img} 
-                                />
-                                <Card.Body>
-                                    <Card.Title>{product.name}</Card.Title>
+        <>
+        <CardGroup className="m-5">
+      <Row xs={2} md={4} className="g-3">
+        {productCargados.map((product) => (
+          <Col key={productCargados.id}>
+            <Card className="w-100 h-100 p-3 shadow-lg bg-body rounded">
+              <Card.Img  className="card d-flex align-items-center h-100" variant="top" src={product.img} /> 
+              <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
                                     <Card.Text className="fs-3">
                                         Precio: ${product.precio}
                                     </Card.Text>
@@ -106,19 +94,15 @@ function GridProducts({ searchTerm }) {
                                 </Card.Footer>
                             </Card>
                         </Col>
-                    ))
-                ) : (
-                    <Col className="text-center w-100 py-5">
-                        <h3>No se encontraron productos para "{searchTerm}"</h3>
-                    </Col>
-                )}
-            </Row>
+        ))}
+        </Row>
         </CardGroup>
+        </>
     );
 }
 
 
-const Home = ({ searchTerm }) => {
+const Home = () => {
     return (
         <>
             <Navb /> 
@@ -127,7 +111,7 @@ const Home = ({ searchTerm }) => {
             <Container>
                 <h2 className="my-4">Nuestros Productos</h2>
             </Container>
-            <GridProducts searchTerm={searchTerm} />
+            <GridProducts/>
             <ImgOverlay />
         </>
     );

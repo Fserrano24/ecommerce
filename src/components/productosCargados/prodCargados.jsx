@@ -1,4 +1,4 @@
-import memor from "../../img/memoriaRAM.jpg";
+import memoria from "../../img/memoriaRAM.jpg";
 import mouse from "../../img/mouse.jpg";
 import teclado from "../../img/teclado1.png";
 import auriculares from "../../img/auriculares.jpg";
@@ -60,7 +60,7 @@ const productCargados = [
     precio: 110000,
     stock: 4,
     categoria: "Componentes",
-    img: memor,
+    img: memoria,
     descripcion: "Memoria RAM DDR4 de 16GB a 3200MHz para mejorar el rendimiento multitarea y la velocidad del sistema.",
     },
     {
