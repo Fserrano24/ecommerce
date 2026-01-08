@@ -1,6 +1,5 @@
-
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/home';
 import Aboutus from './pages/aboutus/aboutus';
 import Navb from './pages/navBar/navbar';
@@ -8,7 +7,6 @@ import AboutUs from './pages/aboutus/aboutus';
 import QuienesSomos from './pages/aboutus/aboutus';
 
 function App() {
-
 
   return (
    <BrowserRouter>
