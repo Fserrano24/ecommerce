@@ -1,149 +1,136 @@
 import React from "react";
-import Navb from "../navBar/navbar";   
+import Navb from "../navBar/navbar";
 import { useState } from 'react';
 import Carousel from "react-bootstrap/Carousel";
 import imgCarrusel1 from "../../img/imgCarrusel1.jpg";
 import imgCarrusel2 from "../../img/imgCarrusel2.png";
 import imgCarrusel3 from "../../img/imgCarrusel3.png";
 import imgCarrusel4 from "../../img/imgCarrusel4.jpg";
-import anuncioNetbuy from "../../img/anuncioNetbuy.png";
+import anuncio from "../../img/anuncio.png";
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import './home.css';
-import monitor from "../../img/monitor.jpg";
+import productCargados from "../../components/productosCargados/prodCargados";
+import { AgregarAlCarrito, VerDetalles } from "../../components/buttons/buttonDetalle";
+import categorias from "../../components/productosCargados/prodLanding";
 
 
 function ControlledCarousel() {
-  const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(0);
+    const handleSelect = (selectedIndex) => {
+        setIndex(selectedIndex);
+    };
 
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
-
-  return (
-    <Carousel activeIndex={index} onSelect={handleSelect} fixed="top" className="carouselstyle">
-      <Carousel.Item fixed="top">
-        <img className="d-block w-100 img-fluid" src={imgCarrusel1} alt="img1" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100 img-fluid" src={imgCarrusel2} alt="img2" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100 img-fluid" src={imgCarrusel3} alt="img3" />
-      </Carousel.Item>
-      <Carousel.Item>   
-        <img className="d-block w-100 img-fluid" src={imgCarrusel4} alt="img4"/>
-      </Carousel.Item>
-    </Carousel>
-  );
+    return (
+        <Carousel activeIndex={index} onSelect={handleSelect} className="carouselstyle">
+            <Carousel.Item>
+                <img className="d-block w-100 img-fluid" src={imgCarrusel1} alt="img1" />
+            </Carousel.Item>
+            <Carousel.Item>
+                <img className="d-block w-100 img-fluid" src={imgCarrusel2} alt="img2" />
+            </Carousel.Item>
+            <Carousel.Item>
+                <img className="d-block w-100 img-fluid" src={imgCarrusel3} alt="img3" />
+            </Carousel.Item>
+            <Carousel.Item>
+                <img className="d-block w-100 img-fluid" src={imgCarrusel4} alt="img4" />
+            </Carousel.Item>
+        </Carousel>
+    );
 }
 
 function ImgOverlay() {
-  return (
-    <Card className="cardPagPrincipal">
-      <Card.Img src={anuncioNetbuy} alt="Card image"/>
-    </Card>
-  );
+    return (
+        <Card className="cardPagPrincipal anuncioNetbuy">
+            <Card.Img src={anuncio} alt="Card image" />
+        </Card>
+    );
 }
 
-function CardProductos() {
-  return (
-    <CardGroup>
-      <Card className="w-100">
-        <Card.Img variant="top" src={monitor} />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-      <Card className="w-100">
-        <Card.Img variant="top" src={monitor} />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={monitor} />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This card has supporting text below as a natural lead-in to
-            additional content.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={monitor} />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This card has even longer content than the
-            first to show that equal height action.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-    </CardGroup>
-  );
+const LandingCategorias = () => {
+    return (
+        <section className="landing-categorias py-5">
+            <div className="container">
+                <div className="row p-3 bg-body rounded">
+                    {categorias.map((cat, idx) => (
+                        <div key={idx} className="col-lg-2 col-md-4 col-6 mb-3">
+                            <div className="landing-categoria-card">
+                                <a href={cat.link || "#"}>
+                                    <img src={cat.img} alt={cat.alt} className="landing-categoria-imagen" />
+                                </a>
+                                <div className="landing-categoria-overlay">
+                                    <span className="landing-categoria-texto">{cat.nombre}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+function GridProducts({ searchTerm }) {
+    const productosFiltrados = productCargados.filter((product) => {
+        const busqueda = (searchTerm || "").toLowerCase();
+        const coincideNombre = product.name?.toLowerCase().includes(busqueda);
+        const coincideCategoria = product.categoria?.toLowerCase().includes(busqueda);
+
+        return coincideNombre || coincideCategoria;
+    });
+
+    return (
+        <CardGroup className="m-4">
+            <Row xs={1} md={4} className="g-4 w-100">
+                {productosFiltrados.length > 0 ? (
+                    productosFiltrados.map((product) => (
+                        <Col key={product.id}>
+                            <Card className="w-100 h-100 shadow-lg bg-body rounded cardPagPrincipal">
+                                <Card.Img 
+                                    variant="top" 
+                                    className="h-100 d-flex justify-content-center align-items-center" 
+                                    src={product.img} 
+                                />
+                                <Card.Body>
+                                    <Card.Title>{product.name}</Card.Title>
+                                    <Card.Text className="fs-3">
+                                        Precio: ${product.precio}
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <VerDetalles />
+                                    <AgregarAlCarrito />
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                    ))
+                ) : (
+                    <Col className="text-center w-100 py-5">
+                        <h3>No se encontraron productos para "{searchTerm}"</h3>
+                    </Col>
+                )}
+            </Row>
+        </CardGroup>
+    );
 }
 
 
-function GridProducts() {
-  return (
-    <Row xs={1} md={3} className="g-6">
-      {Array.from({ length: 6 }).map((_, idx) => (
-        <Col key={idx}>
-          <Card>
-            <Card.Img variant="top" src={monitor} />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
-  );
-}
-
-const Home = () => {
+const Home = ({ searchTerm }) => {
     return (
         <>
-            
-            <Navb />
+            <Navb /> 
             <ControlledCarousel />
-            <CardProductos />
-            <GridProducts />
-            <CardProductos />
-            <ImgOverlay/>
-
+            <LandingCategorias />   
+            <Container>
+                <h2 className="my-4">Nuestros Productos</h2>
+            </Container>
+            <GridProducts searchTerm={searchTerm} />
+            <ImgOverlay />
         </>
-    )
-}
+    );
+};
 
 export default Home;
