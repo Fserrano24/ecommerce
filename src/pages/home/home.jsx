@@ -6,12 +6,16 @@ import imgCarrusel1 from "../../img/imgCarrusel1.jpg";
 import imgCarrusel2 from "../../img/imgCarrusel2.png";
 import imgCarrusel3 from "../../img/imgCarrusel3.png";
 import imgCarrusel4 from "../../img/imgCarrusel4.jpg";
+import anuncio from "../../img/anuncio.png";
 import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import CardGroup from 'react-bootstrap/CardGroup';
-import monitor from "../../img/monitor.jpg";
-import anuncio from "../../img/anuncioNetBuy.png";
+import Container from 'react-bootstrap/Container';
+import './home.css';
+import productCargados from "../../components/productosCargados/prodCargados";
+import { AgregarAlCarrito, VerDetalles } from "../../components/buttons/buttonDetalle";
+import categorias from "../../components/productosCargados/prodLanding";
 
 
 function ControlledCarousel() {
@@ -114,3 +118,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
