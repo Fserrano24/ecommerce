@@ -7,18 +7,20 @@ import Login from './pages/login/login';
 import Admin from './pages/admin/admin';
 import Detalle from './pages/detalle/detalle';
 import QuienesSomos from './pages/aboutus/aboutus';
+import Error404 from './pages/404error/404';
 
 function App() {
   return (
    <BrowserRouter>
    <Routes>
       <Route path='/aboutus' element={<QuienesSomos />} />
+      <Route path='/carrito' element={<Error404 />} />
       <Route path='/home' element={<Home />} />
-      <Route path='/' element={<Navb />} />
        <Route path="/login" element={<Login />} />
+       <Route path="/error" element={<Error404/>} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<Home />} />
         <Route path="/detalle/:id" element={<Detalle />} />
-        <Route path="*" element={<h1 className="text-center mt-5">404</h1>} />
    </Routes>
    </BrowserRouter>
   )

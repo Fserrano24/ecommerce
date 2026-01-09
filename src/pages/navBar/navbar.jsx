@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { isAdmin, logout } from "../../auth/auth";
+import './navbar.css';  
 
 
 
@@ -22,7 +23,7 @@ const Navb = () => {
     };
     return (
 
-        <Navbar expand="xl" sticky="top" bg="light">
+        <Navbar expand="xxl" sticky="top" bg="light">
             <Container fluid className="px-0">
                 <Navbar.Brand href="home">
                     <img className="logo d-inline-block align-top m-3 p-2" src={logo} height="75" alt="NetBuy" />
@@ -53,8 +54,7 @@ const Navb = () => {
                             )}
 
                             {admin ? (
-                                <Nav.Link
-                                    onClick={() => {
+                                <Nav.Link onClick={() => {
                                         logout();
                                         navigate("/home");
                                     }}

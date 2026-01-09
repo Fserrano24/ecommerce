@@ -9,20 +9,20 @@ import categorias from "../../components/productosCargados/categorias";
 function Admin() {
     const admin = isAdmin();
     const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+        const file = e.target.files[0];
+        if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        setFormData({
-            ...formData,
-            img: reader.result,
-            imgType: "file",
-        });
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setFormData({
+                ...formData,
+                img: reader.result,
+                imgType: "file",
+            });
+        };
+
+        reader.readAsDataURL(file);
     };
-
-    reader.readAsDataURL(file);
-};
 
     const [products, setProducts] = useState(() => {
         const stored = localStorage.getItem("products");
@@ -75,7 +75,7 @@ function Admin() {
         if (formData.id === null) {
             const newProduct = {
                 ...formData,
-                 id: crypto.randomUUID(),
+                id: crypto.randomUUID(),
             };
             saveProducts([...products, newProduct]);
         } else {
@@ -107,7 +107,7 @@ function Admin() {
     return (
         <>
             <Navb />
-            <Container className="mt-2 w-75">
+            <Container className="mt-2 ">
                 <h2 className="mb-4">Administración de Productos</h2>
                 <Form onSubmit={handleSubmit} className="mb-4">
                     <Form.Control
@@ -142,6 +142,7 @@ function Admin() {
                             </option>
                         ))}
                     </Form.Select>
+
                     <Form.Control
                         className="mb-2"
                         name="descripcion"
@@ -161,33 +162,33 @@ function Admin() {
                         required
                     />
                     <Form.Group className="mb-3">
-  <Form.Label>Imagen (URL)</Form.Label>
-  <Form.Control
-    type="url"
-    placeholder="https://ejemplo.com/imagen.jpg"
-    name="img"
-    value={formData.imgType === "url" ? formData.img : ""}
-    disabled={formData.imgType === "file"}
-    onChange={(e) =>
-      setFormData({
-        ...formData,
-        img: e.target.value,
-        imgType: "url",
-      })
-    }
-  />
-</Form.Group>
+                        <Form.Label>Imagen (URL)</Form.Label>
+                        <Form.Control
+                            type="url"
+                            placeholder="https://ejemplo.com/imagen.jpg"
+                            name="img"
+                            value={formData.imgType === "url" ? formData.img : ""}
+                            disabled={formData.imgType === "file"}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    img: e.target.value,
+                                    imgType: "url",
+                                })
+                            }
+                        />
+                    </Form.Group>
 
-<Form.Group className="mb-3">
-  <Form.Label>O subir imagen (PNG / JPG)</Form.Label>
-  <Form.Control
-    type="file"
-    accept="image/png, image/jpeg"
-    disabled={formData.imgType === "url"}
-    onChange={handleImageUpload}
-  />
-  
-</Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>O subir imagen (PNG / JPG)</Form.Label>
+                        <Form.Control
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            disabled={formData.imgType === "url"}
+                            onChange={handleImageUpload}
+                        />
+
+                    </Form.Group>
 
 
                     <Button type="submit" variant="danger">
@@ -198,9 +199,11 @@ function Admin() {
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Categoría</th>
+                            <th>Descripcion</th>
                             <th>Stock</th>
                             <th>Acciones</th>
                         </tr>
@@ -215,15 +218,17 @@ function Admin() {
                         ) : (
                             products.map((product) => (
                                 <tr key={product.id}>
+                                    <td>{product.id}</td>
                                     <td>{product.nombre}</td>
                                     <td>${product.precio}</td>
-                                    <td>{product.categoria}</td>
+                                    <td className="fs-7">{product.categoria}</td>
+                                    <td>{product.descripcion}</td>
                                     <td>{product.stock}</td>
                                     <td>
                                         <Button
                                             size="sm"
                                             variant="warning"
-                                            className="me-2"
+                                            className="m-2"
                                             onClick={() => handleEdit(product)}
                                         >
                                             Editar
@@ -232,7 +237,11 @@ function Admin() {
                                         <Button
                                             size="sm"
                                             variant="danger"
-                                            onClick={() => handleDelete(product.id)}
+                                            onClick={() => {
+                                                if (window.confirm("¿Seguro que deseas eliminar este producto?")) {
+                                                    handleDelete(product.id);
+                                                }
+                                            }}
                                         >
                                             Borrar
                                         </Button>

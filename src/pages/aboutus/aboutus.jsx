@@ -30,8 +30,8 @@ const AboutUs = () => {
     <>
     <Navb />
     <section className="about">
-      <div className="about-hero">
-      <img src={devCore} alt="Dev Core" />
+      <div className="about-hero sm md lg xl">
+      <img src={devCore} alt="Dev Core" className="sm md lg xl" />
 
         <p>
           Somos un equipo apasionado por el desarrollo web, el diseño y la
@@ -39,7 +39,7 @@ const AboutUs = () => {
         </p>
       </div>
 
-      <div className="about-mission">
+      <div className="about-mission sm md lg xl">
         <h2>Nuestra misión</h2>
         <p>
           Crear soluciones digitales eficientes, visualmente atractivas y
@@ -48,10 +48,10 @@ const AboutUs = () => {
         </p>
       </div>
 
-      <div className="about-team">
+      <div className="about-team sm md lg xl">
         <h2>Nuestro equipo</h2>
 
-        <div className="team-grid">
+        <div className="team-grid sm md lg xl">
           {team.map((member, index) => (
             <div className="team-card" key={index}>
               <img src={member.img} alt={member.name} />

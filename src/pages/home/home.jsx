@@ -16,6 +16,7 @@ import productCargados from "../../components/productosCargados/prodCargados";
 import { AgregarAlCarrito, VerDetalles } from "../../components/buttons/buttonDetalle";
 import { useSearchParams } from "react-router";
 import categorias from "../../components/productosCargados/prodLanding";
+import Footer from "../footer/footer";
 
 function ControlledCarousel() {
     const [index, setIndex] = useState(0);
@@ -42,29 +43,39 @@ function ControlledCarousel() {
 
 function ImgOverlay() {
     return (
-        <Card className="cardPagPrincipal anuncioNetbuy my-5 mx-auto">
+        <Card className="cardPagPrincipal anuncioNetbuy mt-5">
             <Card.Img src={anuncio} alt="Card image" />
         </Card>
     );
 }
-
 const LandingCategorias = () => {
     return (
         <section className="landing-categorias py-5">
             <div className="container">
                 <div className="row p-3 bg-body rounded">
+
                     {categorias.map((cat, idx) => (
-                        <div key={idx} className="col-lg-2 col-md-4 col-6 mb-3">
-                            <div className="landing-categoria-card">
-                                <a href={cat.link || "#"}>
-                                    <img src={cat.img} alt={cat.alt} className="landing-categoria-imagen" />
+                        <div
+                            key={idx}
+                            className="col-lg-2 col-md-4 col-6 mb-3 d-flex"
+                        >
+                            <div className="landing-categoria-card h-100 w-100 d-flex flex-column">
+
+                                <a href={cat.link || "#"} className="d-block">
+                                    <img src={cat.img} alt={cat.alt} className="landing-categoria-imagen img-fluid" style={{ height: "160px",objectFit: "contain"}}
+                                    />
                                 </a>
-                                <div className="landing-categoria-overlay">
-                                    <span className="landing-categoria-texto">{cat.nombre}</span>
+
+                                <div className="landing-categoria-overlay mt-auto">
+                                    <span className="landing-categoria-texto">
+                                        {cat.nombre}
+                                    </span>
                                 </div>
+
                             </div>
                         </div>
                     ))}
+
                 </div>
             </div>
         </section>
@@ -72,64 +83,70 @@ const LandingCategorias = () => {
 };
 
 function GridProducts() {
-  const [searchParams] = useSearchParams();
-  const search = searchParams.get("search") || "";
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get("search") || "";
 
-  const productosStorage =
-    JSON.parse(localStorage.getItem("products")) || [];
+    const productosStorage =
+        JSON.parse(localStorage.getItem("products")) || [];
 
-  const allProducts = [
-    ...productCargados,
-    ...productosStorage.filter(
-      (p) => !productCargados.some((pc) => pc.id === p.id)
-    ),
-  ];
+    const allProducts = [
+        ...productCargados,
+        ...productosStorage.filter(
+            (p) => !productCargados.some((pc) => pc.id === p.id)
+        ),
+    ];
 
-  const productosFiltrados = allProducts.filter((p) =>
-    p.nombre.toLowerCase().includes(search.toLowerCase())
-  );
+    const productosFiltrados = allProducts.filter((p) =>
+        p.nombre.toLowerCase().includes(search.toLowerCase())
+    );
 
-  return (
-    <Row xs={2} md={4} className="g-3">
-      {productosFiltrados.map((product) => (
-        <Col key={product.id}>
-          <Card className="w-100 h-100 p-3 shadow-lg bg-body rounded">
-            <Card.Img
-              src={product.img || "https://via.placeholder.com/300"}
-              variant="top"
-              className="h-100"
-            />
+    return (
+        <Row xs={2} md={4} className="g-3">
+            {productosFiltrados.map((product) => (
+                <Col key={product.id}>
+                    <Card className="w-100 h-100 p-3 shadow-lg bg-body rounded">
+                        <Card.Img
+                            src={product.img || "https://via.placeholder.com/300"}
+                            variant="top"
+                            className="h-100"
+                        />
 
-            <Card.Body>
-              <Card.Title>{product.nombre}</Card.Title>
-              <Card.Text>${product.precio}</Card.Text>
-            </Card.Body>
+                        <Card.Body>
+                            <Card.Title>{product.nombre}</Card.Title>
+                            <Card.Text>${product.precio}</Card.Text>
+                        </Card.Body>
 
-            <Card.Footer className="d-flex justify-content-between">
-              <VerDetalles slug={product.slug || product.id} />
-              <AgregarAlCarrito product={product} />
-            </Card.Footer>
-          </Card>
-        </Col>
-      ))}
-    </Row>
-  );
+                        <Card.Footer className="d-flex justify-content-between">
+                            <VerDetalles slug={product.slug || product.id} />
+                            <AgregarAlCarrito product={product} />
+                        </Card.Footer>
+                    </Card>
+                </Col>
+            ))}
+        </Row>
+    );
 }
+
+
+
+
 const Home = () => {
-  return (
-    <>
-      <Navb />
-     <div>
-      <ControlledCarousel />
-      <LandingCategorias />
-      <Container>
-        <h2 className="my-4">Nuestros Productos</h2>
-      </Container>
-      <GridProducts />
-      <ImgOverlay />
-      </div>
-    </>
-  );
+
+    return (
+        <>
+            <Navb />
+            <div>
+                <ControlledCarousel />
+                <LandingCategorias />
+                <Container>
+                    <h2 className="my-4">Nuestros Productos</h2>
+                </Container>
+                <GridProducts />
+                <ImgOverlay />
+                <Footer />
+            </div>
+        </>
+    );
 };
 
 export default Home;
