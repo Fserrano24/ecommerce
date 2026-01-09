@@ -1,29 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Navb from "../navBar/navbar";
-import { useState } from 'react';
 import Carousel from "react-bootstrap/Carousel";
-import imgCarrusel1 from "../../img/imgCarrusel1.jpg";
-import imgCarrusel2 from "../../img/imgCarrusel2.png";
-import imgCarrusel3 from "../../img/imgCarrusel3.png";
-import imgCarrusel4 from "../../img/imgCarrusel4.jpg";
-import anuncio from "../../img/anuncio.png";
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import anuncio from "../../img/anuncio.png";
 import './home.css';
+import imgCarrusel1 from "../../img/imgCarrusel1.jpg";
+import imgCarrusel2 from "../../img/imgCarrusel2.png";
+import imgCarrusel3 from "../../img/imgCarrusel3.png";
+import imgCarrusel4 from "../../img/imgCarrusel4.jpg";
 import productCargados from "../../components/productosCargados/prodCargados";
 import { AgregarAlCarrito, VerDetalles } from "../../components/buttons/buttonDetalle";
+import { useSearchParams } from "react-router";
 import categorias from "../../components/productosCargados/prodLanding";
-
 
 function ControlledCarousel() {
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
-
     return (
         <Carousel activeIndex={index} onSelect={handleSelect} className="carouselstyle">
             <Carousel.Item>
@@ -44,7 +42,7 @@ function ControlledCarousel() {
 
 function ImgOverlay() {
     return (
-        <Card className="cardPagPrincipal anuncioNetbuy">
+        <Card className="cardPagPrincipal anuncioNetbuy my-5 mx-auto">
             <Card.Img src={anuncio} alt="Card image" />
         </Card>
     );
@@ -74,49 +72,61 @@ const LandingCategorias = () => {
 };
 
 function GridProducts() {
-    return (
-        <>
-        <CardGroup className="m-5">
-      <Row xs={2} md={4} className="g-3">
-        {productCargados.map((product) => (
-          <Col key={productCargados.id}>
-            <Card className="w-100 h-100 p-3 shadow-lg bg-body rounded">
-              <Card.Img  className="card d-flex align-items-center h-100" variant="top" src={product.img} /> 
-              <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                                    <Card.Text className="fs-3">
-                                        Precio: ${product.precio}
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <VerDetalles />
-                                    <AgregarAlCarrito />
-                                </Card.Footer>
-                            </Card>
-                        </Col>
-        ))}
-        </Row>
-        </CardGroup>
-        </>
-    );
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") || "";
+
+  // 🧾 productos creados desde admin
+  const adminProducts =
+    JSON.parse(localStorage.getItem("adminProducts")) || [];
+
+  // 🧮 unión de productos
+  const allProducts = [...productCargados, ...adminProducts];
+
+  // 🔍 filtro por nombre
+  const productosFiltrados = allProducts.filter((p) =>
+    p.nombre.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <Row xs={2} md={4} className="g-3">
+      {productosFiltrados.map((product) => (
+        <Col key={product.slug ?? product.id}>
+          <Card className="w-100 h-100 p-3 shadow-lg bg-body rounded">
+            <Card.Img
+              src={product.img}
+              className="card d-flex align-items-center h-100"
+              variant="top"
+            />
+            <Card.Body>
+              <Card.Title>{product.nombre}</Card.Title>
+              <Card.Text>${product.precio}</Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <VerDetalles slug={product.slug ?? product.id} />
+              <AgregarAlCarrito />
+            </Card.Footer>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  );
 }
 
-
 const Home = () => {
-    return (
-        <>
-            <Navb /> 
-            <ControlledCarousel />
-            <LandingCategorias />   
-            <Container>
-                <h2 className="my-4">Nuestros Productos</h2>
-            </Container>
-            <GridProducts/>
-            <ImgOverlay />
-        </>
-    );
+  return (
+    <>
+      <Navb />
+     <div>
+      <ControlledCarousel />
+      <LandingCategorias />
+      <Container>
+        <h2 className="my-4">Nuestros Productos</h2>
+      </Container>
+      <GridProducts />
+      <ImgOverlay />
+      </div>
+    </>
+  );
 };
 
 export default Home;
-
-

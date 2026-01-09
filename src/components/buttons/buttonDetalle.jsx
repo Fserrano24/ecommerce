@@ -1,19 +1,22 @@
 import Button from 'react-bootstrap/Button';
-function VerDetalles() {
+import { Link } from "react-router-dom";
+
+function VerDetalles({ id }) {
   return (
-    <>
-        <Button variant="secondary" className='m-2'>Ver detalles</Button>
-    </>
+    <Link to={`/detalle/${id}`}>
+      <Button variant="secondary" className='m-2 d-flex align-items-center'>
+        Ver detalles
+      </Button>
+    </Link>
   );
 }
 
 function AgregarAlCarrito() {
   return (
-    <>
-        <Button variant="outline-success" className='m-2'>Agregar al carrito</Button>
-    </>
+    <Button variant="outline-success" className='m-2 d-flex align-items-center'>
+      Agregar al carrito
+    </Button>
   );
 }
-
 
 export { AgregarAlCarrito, VerDetalles };

@@ -11,7 +11,8 @@ import monitor3 from "../../img/monitor3.jpeg";
 const productCargados = [
     {
     id: "1",
-    name: "Monitor Gamer",
+    nombre: "Monitor Gamer",
+    slug: "monitorgamer",
     precio: 150000,
     stock: 2,
     categoria: "Monitores",
@@ -20,7 +21,8 @@ const productCargados = [
     },
     {
     id: "2",
-    name: "Teclado Mecánico",
+    slug: "tecladomecanico",
+    nombre: "Teclado Mecánico",
     precio: 80000,  
     stock: 5,
     categoria: "Periféricos",
@@ -29,7 +31,8 @@ const productCargados = [
     },
     {
     id: "3",
-    name: "Mouse Inalámbrico",
+    nombre: "Mouse Inalámbrico",
+    slug: "mouseinalambrico",
     precio: 60000,
     stock: 10,
     categoria: "Periféricos",
@@ -38,7 +41,8 @@ const productCargados = [
     },
     {
     id: "4",
-    name: "Auriculares Gaming",
+    nombre: "Auriculares Gaming",
+    slug: "auricularesgaming",
     precio: 120000,
     stock: 3,
     categoria: "Audio",
@@ -47,7 +51,8 @@ const productCargados = [
     },
     {
     id: "5",
-    name: "Disco Duro Externo",
+    nombre: "Disco Duro Externo",
+    slug: "discoduroexterno",
     precio: 90000,
     stock: 7,
     categoria: "Almacenamiento",
@@ -56,7 +61,8 @@ const productCargados = [
     },
     {
     id: "6",
-    name: "Memoria RAM 16GB",
+    nombre: "Memoria RAM 16GB",
+    slug: "memoriaram16gb",
     precio: 110000,
     stock: 4,
     categoria: "Componentes",
@@ -64,8 +70,9 @@ const productCargados = [
     descripcion: "Memoria RAM DDR4 de 16GB a 3200MHz para mejorar el rendimiento multitarea y la velocidad del sistema.",
     },
     {
-    id: "6",
-    name: "Monitor Gamer",
+    id: "7",
+    nombre: "Monitor Gamer",
+    slug: "monitorgamer2",
     precio: 150000,
     stock: 2,
     categoria: "Monitores",
@@ -74,7 +81,7 @@ const productCargados = [
     },
     {
     id: "8",
-    name: "Monitor Gamer",
+    nombre: "Monitor Gamer",
     precio: 185000,
     stock: 2,
     categoria: "Monitores",
