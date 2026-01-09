@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
 import productCargados from "../../components/productosCargados/prodCargados";
 import Navb from "../navBar/navbar";
 import "./detalle.css";
+import Home from "../home/home";
 
 const Detalle = () => {
   const { id } = useParams();
@@ -21,15 +22,7 @@ const Detalle = () => {
 
   if (!producto) {
     return (
-      <>
-        <Navb />
-        <Container className="mt-5 text-center">
-          <h4>Producto no encontrado</h4>
-          <Link to="/home" className="btn btn-outline-secondary mt-3">
-            Volver al inicio
-          </Link>
-        </Container>
-      </>
+        <Home />
     );
   }
 
@@ -40,15 +33,8 @@ const Detalle = () => {
       <Container className="my-5">
         <Card className="shadow-lg p-4">
           <Row className="align-items-center">
-            {/* IMAGEN */}
             <Col md={6} className="text-center mb-4">
-              <img
-                src={
-                  producto.img ||
-                  producto.imagen ||
-                  producto.image ||
-                  "https://via.placeholder.com/400"
-                }
+              <img src={ producto.img || producto.imagen || producto.image || "https://via.placeholder.com/400"}
                 alt={producto.nombre}
                 className="img-fluid rounded"
                 style={{ maxHeight: "500px", objectFit: "contain" }}
