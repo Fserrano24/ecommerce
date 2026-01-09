@@ -75,14 +75,16 @@ function GridProducts() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
 
-  // 🧾 productos creados desde admin
-  const adminProducts =
-    JSON.parse(localStorage.getItem("adminProducts")) || [];
+  const productosStorage =
+    JSON.parse(localStorage.getItem("products")) || [];
 
-  // 🧮 unión de productos
-  const allProducts = [...productCargados, ...adminProducts];
+  const allProducts = [
+    ...productCargados,
+    ...productosStorage.filter(
+      (p) => !productCargados.some((pc) => pc.id === p.id)
+    ),
+  ];
 
-  // 🔍 filtro por nombre
   const productosFiltrados = allProducts.filter((p) =>
     p.nombre.toLowerCase().includes(search.toLowerCase())
   );
@@ -90,20 +92,22 @@ function GridProducts() {
   return (
     <Row xs={2} md={4} className="g-3">
       {productosFiltrados.map((product) => (
-        <Col key={product.slug ?? product.id}>
+        <Col key={product.id}>
           <Card className="w-100 h-100 p-3 shadow-lg bg-body rounded">
             <Card.Img
-              src={product.img}
-              className="card d-flex align-items-center h-100"
+              src={product.img || "https://via.placeholder.com/300"}
               variant="top"
+              className="h-100"
             />
+
             <Card.Body>
               <Card.Title>{product.nombre}</Card.Title>
               <Card.Text>${product.precio}</Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <VerDetalles slug={product.slug ?? product.id} />
-              <AgregarAlCarrito />
+
+            <Card.Footer className="d-flex justify-content-between">
+              <VerDetalles slug={product.slug || product.id} />
+              <AgregarAlCarrito product={product} />
             </Card.Footer>
           </Card>
         </Col>
@@ -111,7 +115,6 @@ function GridProducts() {
     </Row>
   );
 }
-
 const Home = () => {
   return (
     <>

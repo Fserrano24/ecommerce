@@ -8,6 +8,21 @@ import categorias from "../../components/productosCargados/categorias";
 
 function Admin() {
     const admin = isAdmin();
+    const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+        setFormData({
+            ...formData,
+            img: reader.result,
+            imgType: "file",
+        });
+    };
+
+    reader.readAsDataURL(file);
+};
 
     const [products, setProducts] = useState(() => {
         const stored = localStorage.getItem("products");
@@ -31,6 +46,7 @@ function Admin() {
         categoria: "",
         stock: "",
         img: "",
+        imgType: "",
     });
 
 
@@ -47,7 +63,7 @@ function Admin() {
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.nombre]: e.target.value,
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -58,7 +74,7 @@ function Admin() {
         if (formData.id === null) {
             const newProduct = {
                 ...formData,
-                id: Date.now(),
+                 id: crypto.randomUUID(),
             };
             saveProducts([...products, newProduct]);
         } else {
@@ -75,6 +91,7 @@ function Admin() {
             categoria: "",
             stock: "",
             img: "",
+            imgType: "",
         });
     };
     const handleEdit = (product) => {
@@ -135,16 +152,34 @@ function Admin() {
                         required
                     />
                     <Form.Group className="mb-3">
-                        <Form.Label>Imagen (URL)</Form.Label>
-                        <Form.Control
-                            type="url"
-                            placeholder="https://ejemplo.com/imagen.jpg"
-                            name="img"
-                            value={formData.img}
-                            onChange={handleChange}
-                            required
-                        />
-                    </Form.Group>
+  <Form.Label>Imagen (URL)</Form.Label>
+  <Form.Control
+    type="url"
+    placeholder="https://ejemplo.com/imagen.jpg"
+    name="img"
+    value={formData.imgType === "url" ? formData.img : ""}
+    disabled={formData.imgType === "file"}
+    onChange={(e) =>
+      setFormData({
+        ...formData,
+        img: e.target.value,
+        imgType: "url",
+      })
+    }
+  />
+</Form.Group>
+
+<Form.Group className="mb-3">
+  <Form.Label>O subir imagen (PNG / JPG)</Form.Label>
+  <Form.Control
+    type="file"
+    accept="image/png, image/jpeg"
+    disabled={formData.imgType === "url"}
+    onChange={handleImageUpload}
+  />
+  
+</Form.Group>
+
 
                     <Button type="submit" variant="danger">
                         {formData.id ? "Editar producto" : "Agregar producto"}

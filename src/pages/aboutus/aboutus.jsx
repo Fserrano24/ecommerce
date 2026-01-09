@@ -4,6 +4,7 @@ import fotoGaston from "../../img/foto.jpeg";
 import fotoFabrizio from "../../img/fabrizio.jpg";
 import fotoivan from "../../img/ivan.jpeg";
 import fotoagus from "../../img/agus.jpeg";
+import Navb from "../navBar/navbar";
 
 const team = [
   {
@@ -26,6 +27,8 @@ const team = [
 
 const AboutUs = () => {
   return (
+    <>
+    <Navb />
     <section className="about">
       <div className="about-hero">
       <img src={devCore} alt="Dev Core" />
@@ -58,6 +61,7 @@ const AboutUs = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

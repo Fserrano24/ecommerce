@@ -5,10 +5,14 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import { CartProvider } from "./context/CartContext";
+
 
 
 createRoot(document.getElementById('root')).render(
+  <CartProvider>
   <StrictMode>
     <App />
   </StrictMode>,
+  </CartProvider>
 )
