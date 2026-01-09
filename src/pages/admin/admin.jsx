@@ -44,6 +44,7 @@ function Admin() {
         nombre: "",
         precio: "",
         categoria: "",
+        descripcion: "",
         stock: "",
         img: "",
         imgType: "",
@@ -89,6 +90,7 @@ function Admin() {
             nombre: "",
             precio: "",
             categoria: "",
+            descripcion: "",
             stock: "",
             img: "",
             imgType: "",
@@ -105,8 +107,7 @@ function Admin() {
     return (
         <>
             <Navb />
-
-            <Container className="mt-5 pt-5">
+            <Container className="mt-2 w-75">
                 <h2 className="mb-4">Administración de Productos</h2>
                 <Form onSubmit={handleSubmit} className="mb-4">
                     <Form.Control
@@ -141,6 +142,14 @@ function Admin() {
                             </option>
                         ))}
                     </Form.Select>
+                    <Form.Control
+                        className="mb-2"
+                        name="descripcion"
+                        placeholder="Descripción"
+                        value={formData.descripcion}
+                        onChange={handleChange}
+                        required
+                    />
 
                     <Form.Control
                         className="mb-3"

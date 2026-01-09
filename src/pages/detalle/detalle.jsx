@@ -19,7 +19,7 @@ function Detalle() {
         <Card className="p-4 shadow">
           <Card.Img src={producto.img} />
           <Card.Body>
-            <Card.Title>{producto.name}</Card.Title>
+            <Card.Title>{producto.nombre}</Card.Title>
             <Card.Text>{producto.descripcion}</Card.Text>
             <p><strong>Categoría:</strong> {producto.categoria}</p>
             <p><strong>Precio:</strong> ${producto.precio}</p>
