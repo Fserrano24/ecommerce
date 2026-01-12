@@ -1,5 +1,5 @@
 .contenedor-footer {
-  background-color: #00ABE4;
+  background-color: #f10b2a;
   color: #FFFFFF;
   font-family: sans-serif;
   width: 100%;
@@ -88,3 +88,10 @@
     max-width: 1400px;
   }
 }
+ h4{
+  text-decoration: underline;
+  
+ }
+ a:hover{
+  color: black;
+ }

@@ -30,7 +30,7 @@ const Footer = () => {
 
         <div className="seccion-footer">
           <a href="/login">Inicio de Sesión</a>
-          <a href="/aboutus">Quiénes Somos</a>
+          <a href="/aboutus">Quiénes somos</a>
         </div>
       </div>
 
