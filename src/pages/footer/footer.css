@@ -1,5 +1,5 @@
 .contenedor-footer {
-  background-color: #f10b2a;
+  background-color: #e40b28;
   color: #FFFFFF;
   font-family: sans-serif;
   width: 100%;
@@ -90,8 +90,7 @@
 }
  h4{
   text-decoration: underline;
-  
  }
- a:hover{
-  color: black;
- }
+  a:hover{
+    color: rgb(0, 0, 0);
+  }
