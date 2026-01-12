@@ -83,3 +83,74 @@
   font-size: 0.95rem;
 }
 
+
+/* 📟 Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .about {
+    padding: 50px 6%;
+  }
+
+  .about-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .about-mission h2,
+  .about-team h2 {
+    font-size: 2rem;
+  }
+}
+
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1200px) {
+  .about {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+/* 📱 Mobile real (hasta 750px) */
+@media (max-width: 750px) {
+  .about {
+    width: 100%;
+    padding: 30px 4%;
+    overflow-x: hidden;
+  }
+
+  .about-hero {
+    margin-bottom: 35px;
+  }
+
+  .about-hero h1 {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  .about-hero p {
+    font-size: 0.95rem;
+  }
+
+  .about-mission {
+    margin-bottom: 45px;
+  }
+
+  .about-mission h2,
+  .about-team h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-mission p {
+    font-size: 0.95rem;
+  }
+
+  .team-grid {
+    gap: 18px;
+  }
+
+  .team-card {
+    padding: 18px 14px;
+  }
+
+  .team-card img {
+    width: 100px;
+    height: 100px;
+  }
+}
