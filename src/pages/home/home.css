@@ -49,3 +49,61 @@
   margin: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+/* Mobile chico */
+@media (max-width: 480px) {
+  .landing-categoria-card {
+    height: 130px;
+  }
+
+  .landing-categoria-overlay {
+    padding: 1rem 0.6rem 0.6rem;
+  }
+
+  .landing-categoria-texto {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Mobile grande */
+@media (min-width: 481px) and (max-width: 767px) {
+  .landing-categoria-card {
+    height: 150px;
+  }
+
+  .landing-categoria-texto {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+}
+
+/*  Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .landing-categoria-card {
+    height: 180px;
+  }
+
+  .landing-categoria-texto {
+    font-size: 0.95rem;
+  }
+}
+
+/* Notebook  */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .landing-categoria-card {
+    height: 200px;
+  }
+}
+
+/* televisores*/
+@media (min-width: 1440px) {
+  .landing-categoria-card {
+    height: 240px;
+  }
+
+  .landing-categoria-texto {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+}

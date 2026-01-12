@@ -1,0 +1,98 @@
+/*  Celular chico */
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem !important;
+  }
+
+  .card h2 {
+    font-size: 1.4rem;
+  }
+
+  .card h4 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+
+  .card img {
+    max-height: 280px !important;
+  }
+
+  .card .btn {
+    width: 100%;
+  }
+
+  .card .d-flex.gap-3 {
+    flex-direction: column;
+    gap: 10px !important;
+  }
+}
+
+/* Celular grande */
+@media (min-width: 481px) and (max-width: 767px) {
+  .card img {
+    max-height: 320px !important;
+  }
+
+  .card h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* 📟 Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card img {
+    max-height: 380px !important;
+  }
+
+  .card h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/*  Notebook  */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .card img {
+    max-height: 450px !important;
+  }
+}
+
+/* monitor de escritorio */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .card img {
+    max-height: 520px !important;
+  }
+
+  .card h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Televisores*/
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .card {
+    padding: 3rem !important;
+  }
+
+  .card h2 {
+    font-size: 2.5rem;
+  }
+
+  .card h4 {
+    font-size: 2rem;
+  }
+
+  .card p {
+    font-size: 1.1rem;
+  }
+}
